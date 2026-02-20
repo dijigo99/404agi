@@ -1,0 +1,45 @@
+NES e-Dönüşüm API dokümanlarına https://developertest.nes.com.tr/docs adresinden ulaşabilirsiniz. Aşağıdaki iki test 
+kurum bilgilerini kullanarak birbirleri arasında e-Fatura ve e-İrsaliye gönderimleri yapabilirsiniz. 
+ 
+e-Dönüşüm API’larını Swagger arayüzü üzerinden denemek ve incelemek için aşağıdaki adresleri kullanabilirsiniz. 
+ 
+ 
+E-Fatura Swagger URL https://apitest.nes.com.tr/einvoice/index.html 
+E-Fatura Postman Collection https://apitest.nes.com.tr/einvoice/v1.swagger.taged.json 
+ 
+E-Arşiv Swagger URL https://apitest.nes.com.tr/earchive/index.html 
+E-Arşiv Postman Collection https://apitest.nes.com.tr/earchive/v1.swagger.taged.json 
+ 
+E-SMM Swagger URL https://apitest.nes.com.tr/esmm/index.html 
+E-SMM Postman Collection https://apitest.nes.com.tr/esmm/v1.swagger.taged.json 
+ 
+E-MM Swagger URL https://apitest.nes.com.tr/emm/index.html 
+E-MM Postman Collection https://apitest.nes.com.tr/emm/v1.swagger.taged.json 
+ 
+E-İrsaliye Swagger URL https://apitest.nes.com.tr/edespatch/index.html 
+E-İrsaliye Postman Collection https://apitest.nes.com.tr/edespatch/v1.swagger.taged.json 
+Test Portal           https://portaltest.nes.com.tr 
+Test Kurum - 01> 
+Vergi Kimlik No 1234567801 
+Kullanıcı Adı test01@nes.com.tr 
+Parola U782pAd4%gGO 
+API KEY C35FE137CBB6EB376E33C47A46B8BBCB17970689CB09BA55AF212BFDAF4A5F9D 
+ 
+Gönderici Etiket urn:mail:defaultgb@nes.com.tr 
+urn:mail:merkezgb@nes.com.tr 
+ 
+Porta Kutusu Etiket urn:mail:defaultpk@nes.com.tr 
+urn:mail:merkezpk@nes.com.tr 
+ 
+Test Kurum - 02> 
+ 
+Vergi Kimlik No 1234567802 
+Kullanıcı Adı test02@nes.com.tr 
+Parola b48Za0*RFmE$ 
+API KEY 2EA5ADFA0A1C2A6E0E2C03DFABCEA1DD9A183AD24596A4405D5F7C8109D0B085 
+ 
+Gönderici Etiket urn:mail:defaultgb@nes.com.tr 
+urn:mail:merkezgb@nes.com.tr 
+ 
+Porta Kutusu Etiket urn:mail:defaultpk@nes.com.tr 
+urn:mail:merkezpk@nes.com.tr
