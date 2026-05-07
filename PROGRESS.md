@@ -11,6 +11,7 @@
 | Ana Beyin | flamboyant-boyd-c5acf4 | 🟢 Aktif | — |
 | Branding | flamboyant-boyd-c5acf4 | ✅ Bitti | branding session |
 | Web App | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
+| Telegram Bot | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
 
 ---
 
