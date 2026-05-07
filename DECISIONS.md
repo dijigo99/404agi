@@ -87,8 +87,20 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 
 ### Logo
 - ✅ 5 varyant prompt hazırlandı → `branding/LOGO_PROMPTS.md`
-- ⏳ **Kullanıcı generate edecek** — önerilen: Varyant 1 (Glitch Terminal) ana logo + Varyant 2 (Pixel Karakter) maskot
-- [ ] Final logo dosya adı (generate sonrası işlenecek)
+- ✅ **Kullanıcı generate etti** (2026-05-07 22:35) — 4 dosya `branding/assets/`'te:
+  - **`logo-main.jpeg`** — Ana logo (404/AGI_ glitch terminal, web nav + X banner + favicon kaynağı)
+  - **`logo-mascot.jpeg`** — Maskot (sad TV-head robot, token icon + sosyal profil pic + X profil)
+  - `logo-main-alt.jpeg` (yedek)
+  - `logo-mascot-alt.jpeg` (yedek)
+- ⚠️ Format JPEG — favicon/OG için PNG transparent dönüştürmesi sonra yapılacak
+- Kullanım haritası:
+  - Pump.fun token icon: `logo-mascot.jpeg` (512x512)
+  - X profil pic: `logo-mascot.jpeg` (400x400 crop)
+  - X banner: `logo-main.jpeg` (1500x500 düzenleme gerek)
+  - TG profil pic'ler: `logo-mascot.jpeg`
+  - Web nav: `logo-main.jpeg`
+  - Favicon: `logo-main.jpeg` (404 kısmı crop)
+  - OG image (1200x630): composition (text + mascot)
 
 ### Lore
 - ✅ Origin story yazıldı (103 kelime, EN) → `branding/LORE.md`
