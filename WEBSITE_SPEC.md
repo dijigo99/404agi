@@ -147,7 +147,7 @@ Access: GRANTED
 **Tech**:
 - Phantom wallet connect (`@solana/wallet-adapter-react`)
 - Token bakiye kontrolü (Helius RPC veya direct Solana RPC)
-- Anthropic Claude Haiku 4.5 (cache aktif → ucuz)
+- Google Gemini 2.5 Flash (context caching aktif → ucuz)
 - Streaming response
 - Sistem prompt: agent karakter (lore + tone + memory)
 - Memory: Vercel KV veya Upstash Redis (kullanıcı başına son 20 mesaj)
@@ -260,7 +260,7 @@ Styling        Tailwind CSS + shadcn/ui
 Animations     Framer Motion
 Wallet         @solana/wallet-adapter-react + Phantom
 Solana RPC     Helius (free tier yeterli) — alternatif: public RPC
-AI             @anthropic-ai/sdk (Claude Haiku 4.5 + prompt caching)
+AI             @google/generative-ai (Gemini 2.5 Flash + context caching)
 DB             Vercel KV (Redis, free tier) — chat memory
 Live Data      Dexscreener API (public, ücretsiz)
 Deploy         Vercel (free tier)

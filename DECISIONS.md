@@ -21,7 +21,14 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 ### Telegram
 - ✅ **Duyuru kanalı**: `@the404agi_news` (https://t.me/the404agi_news)
 - ✅ **Ana grup**: `@the404agi` (https://t.me/the404agi)
-- ⏳ TR alt grup: henüz açılmadı (`@the404agi_tr` rezerve edilecek)
+- ✅ **TR alt grup**: `@the404agi_tr` (https://t.me/the404agi_tr)
+
+### AI Sağlayıcı
+- ✅ **Google Gemini API** (Anthropic yerine — kullanıcının önceden kredisi var)
+- Model: `gemini-2.5-flash` (chat), `gemini-2.0-flash` (agent tweetler — ucuz)
+- SDK: `@google/generative-ai`
+- Env var: `GEMINI_API_KEY`
+- Context caching aktif (cost optimization)
 
 ### Naming Convention
 - TG entity'ler için prefix: `the404agi_` (Telegram username rakamla başlayamadığı için)

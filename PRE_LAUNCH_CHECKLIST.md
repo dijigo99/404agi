@@ -12,7 +12,7 @@ Launch'tan önce **bitmemesi durumunda launch ETMEYECEĞİMİZ** kalemler ⚠️
 - [ ] ⚠️ Telegram 3 entity oluşturuldu (ana, TR, kanal)
 - [ ] ⚠️ Phantom cüzdan kuruldu, seed güvende
 - [ ] ⚠️ 0.5+ SOL cüzdana yüklendi
-- [ ] ⚠️ Anthropic API key + kredi
+- [x] ⚠️ Gemini API key + kredi (Google AI Studio)
 - [ ] ⚠️ GitHub repo açıldı
 
 ### Web App
@@ -114,7 +114,7 @@ Launch'tan önce **bitmemesi durumunda launch ETMEYECEĞİMİZ** kalemler ⚠️
 - **Plan B**: Vercel default URL (`404agi.vercel.app`) ilk saatte fallback
 
 ### Senaryo: AI chat çalışmıyor (API rate limit)
-- **Önlem**: Anthropic'te kredi yüklü, rate limit kontrol edildi
+- **Önlem**: Gemini'de kredi yüklü, rate limit kontrol edildi (free tier 1500 req/day)
 - **Plan B**: "Agent is taking a break, try again in 5 min" graceful degradation
 
 ### Senaryo: Wallet connect kırılıyor

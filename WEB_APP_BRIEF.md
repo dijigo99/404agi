@@ -46,9 +46,9 @@ WALLET CONNECT
 - Tier sistemi: 0 / 1+ / 100K+ / 1M+
 
 AI CHAT
-- @anthropic-ai/sdk
-- Claude Haiku 4.5
-- Prompt caching aktif (cost optimization)
+- @google/generative-ai
+- Gemini 2.5 Flash
+- Context caching aktif (cost optimization)
 - Streaming response
 - Sistem promptu: BRANDING session'dan gelecek (final değil ama placeholder var)
 - Memory: Vercel KV (kullanıcı başına son 20 mesaj)
@@ -62,7 +62,7 @@ DATA
 DEPLOY
 - Vercel (preview ve production)
 - Custom domain: 404agi.fun (kullanıcı DNS ayarlayacak)
-- Env vars: ANTHROPIC_API_KEY, NEXT_PUBLIC_CONTRACT_ADDRESS, KV_REST_API_URL, KV_REST_API_TOKEN
+- Env vars: GEMINI_API_KEY, NEXT_PUBLIC_CONTRACT_ADDRESS, KV_REST_API_URL, KV_REST_API_TOKEN
 - Contract address env var → launch'tan sonra güncellenecek
 
 KALİTE GEREKSİNİMLERİ (PRE_LAUNCH_CHECKLIST.md'den)

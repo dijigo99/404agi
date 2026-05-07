@@ -42,7 +42,7 @@
 - **Zincir**: Solana
 - **Deploy**: Pump.fun (auto-graduate ~$15K MC)
 - **Web app**: Next.js 14 + Tailwind + shadcn/ui, Vercel
-- **AI**: Anthropic Claude Haiku 4.5 (cache aktif)
+- **AI**: Google Gemini 2.5 Flash (chat) + 2.0 Flash (agent), context caching aktif
 - **Backend**: Vercel edge functions
 - **Telegram**: Bot API + node-telegram-bot-api
 - **Veri**: Dexscreener API (public, ücretsiz)

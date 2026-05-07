@@ -27,7 +27,7 @@ Faz bazlı plan. Saatler "T-saati" referans alınarak. T = launch anı (pump.fun
   - Duyuru kanalı: `t.me/404agi_news`
 - [ ] Phantom cüzdan kur (mobile + extension), 12-word seed güvenli yere
 - [ ] 0.5-1 SOL al (deploy + initial buy için, ~$50-100)
-- [ ] Anthropic API key oluştur (console.anthropic.com), $50 kredi yükle
+- [x] Gemini API key (Google AI Studio, kredi mevcut) — Anthropic yerine
 - [ ] GitHub repo aç: `404agi` — public, readme var
 
 ### Kod altyapısı (ana beyin → işçi sessions)

@@ -66,9 +66,9 @@ Bağımlılık: Web App → Branding (lore + logo bekler). Diğerleri paralel.
 - ✅ X hesabı: **`@404agi_coin`**
 - ✅ GitHub repo: **`github.com/dijigo99/404agi`** (public)
 - ✅ Phantom cüzdan: `@404agiwallet` — 2.02 SOL (~$178) hazır
-- ⏸ TG TR alt grup (`@the404agi_tr`)
-- ⏸ Anthropic API key + kredi
-- ⏸ Bütçe kararı — ek sermaye olacak mı? ($200 baseline, $1.5K-3K tatlı nokta)
+- ✅ TG TR alt grup: `@the404agi_tr`
+- ✅ Gemini API (kullanıcı kredisi mevcut, Anthropic'e gerek yok)
+- ✅ Bütçe netleşti: 2 SOL kişisel rezerv, mümkün olduğunca az kullan, organik marketing
 
 ---
 
