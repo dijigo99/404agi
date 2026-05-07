@@ -1,6 +1,6 @@
 # PROGRESS — Canlı Durum
 
-**Son güncelleme**: 2026-05-07 22:55 (agent session — sistem promptu + tweet gen + response engine canlı)
+**Son güncelleme**: 2026-05-07 23:45 (web app session — landing + AI chat + wallet connect canlı, build geçti)
 
 ---
 
@@ -10,7 +10,7 @@
 |---|---|---|---|
 | Ana Beyin | flamboyant-boyd-c5acf4 | 🟢 Aktif | — |
 | Branding | flamboyant-boyd-c5acf4 | ✅ Bitti | branding session |
-| Web App | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
+| Web App | flamboyant-boyd-c5acf4 | ✅ Bitti (build geçti, Vercel deploy beklemede) | web session |
 | Telegram Bot | flamboyant-boyd-c5acf4 | ✅ Bitti (polling) | telegram session |
 | TG Vercel Conv | flamboyant-boyd-c5acf4 | 🟢 Aktif (webhook'a çevrim) | başlatıldı |
 | AI Agent | flamboyant-boyd-c5acf4 | ✅ Bitti (kod commit'li) | agent session |
@@ -80,6 +80,30 @@
 - [ ] **Manuel adım** (kullanıcı): `GEMINI_API_KEY` `.env`'e koy → `npm run test:prompts` ile live çıktıları gör
 - [ ] **Web app session'a ver**: response endpoint URL → `/api/chat` proxy ile çağıracak
 - [ ] **Launch sonrası**: tweet log → manuel queue veya X API publisher (bu service kapsamı dışı)
+
+### Web App ✅ (2026-05-07 23:45)
+- [x] Next.js 14 (App Router) + TypeScript skeleton (`/web`)
+- [x] Stack: Tailwind + shadcn-style primitives + lucide-react + Framer Motion alternatif (CSS keyframes ile glitch/scanline/typewriter)
+- [x] **Solana**: `@solana/wallet-adapter-react` + Phantom + WalletModal, `ConnectionProvider` ile
+- [x] **AI**: `@google/generative-ai` (Gemini 2.5 Flash, streaming) — `app/api/chat/route.ts`
+- [x] **Memory + rate-limit**: `@upstash/redis` + `@upstash/ratelimit` (sliding-window per wallet, last-20 msg memory, 7d TTL)
+- [x] **Live data**: Dexscreener public API client (10s polling, fallback "AWAITING DEPLOYMENT")
+- [x] **SPL balance**: `lib/solana/balance.ts` — server-side `getParsedTokenAccountsByOwner`, tier resolution (LOCKED/BASIC/POWER/WHALE)
+- [x] **Design system** — bg `#0a0a0a` / accent `#00ff41` / error `#ff3b30` / glitch `#ff00ff`/`#00ffff`, JetBrains Mono + Inter + Space Grotesk (next/font, self-hosted), CRT scanlines + dot-grid + caret blink + glitch-skew utilities
+- [x] **10 bölüm landing** (single-page): Top Bar (sticky, CA copy, mini ticker) → Hero (404 ASCII art + glitch + typewriter tagline + CTA) → Live Ticker (4 metric, 10s refresh) → Manifesto (lore typewriter, on-scroll reveal) → Agent Feed (5 placeholder tweet) → **Token-Gated Chat** (tier'lar, streaming, Quick prompts) → Tokenomics (BURNED rozetleri, public wallet'lar) → How To Buy (3 step → Jupiter) → Roadmap (parodi + hover real) → Community (X/TG/GitHub) → Footer + disclaimer
+- [x] **Sub-routes**: `/chat` (fullscreen) + `/not-found` (on-brand 404 ASCII)
+- [x] **SEO**: `app/opengraph-image.tsx` (dinamik 1200x630 Vercel OG, edge runtime), `sitemap.ts`, `robots.ts`, full metadata + Twitter card
+- [x] **A11y**: ARIA labels, keyboard nav, focus-visible accent ring, `prefers-reduced-motion` tüm animasyonları kesiyor, decorative ASCII `aria-label`
+- [x] **Mobile-first**: Container responsive, 375px hedefli, Top Bar collapse, grid breakpoints (sm/md/lg)
+- [x] `npm run build` PASS — Landing First Load 197 kB / chat 192 kB / static prerendered
+- [x] `.env.example` + comprehensive `web/README.md` (kurulum, env, Vercel deploy + GoDaddy DNS adımları)
+- [x] **Pre-launch davranış**: `NEXT_PUBLIC_CONTRACT_ADDRESS` empty → ticker "AWAITING DEPLOYMENT", chat connected wallet'lara BASIC tier verir (demo)
+- [x] **Post-launch davranış**: CA env set + Vercel redeploy → ticker live, gerçek SPL balance ile tier resolve
+- [ ] **Manuel adım** (kullanıcı): Vercel'e import (root: `web/`) + Upstash Redis Marketplace integration ekle
+- [ ] **Manuel adım** (kullanıcı): Env vars set (`GEMINI_API_KEY`, `NEXT_PUBLIC_HELIUS_RPC`, 3 wallet adresi)
+- [ ] **Manuel adım** (kullanıcı): GoDaddy DNS → A `@ → 76.76.21.21`, CNAME `www → cname.vercel-dns.com`
+- [ ] **Launch anı**: `NEXT_PUBLIC_CONTRACT_ADDRESS` set + redeploy (~30s)
+- [ ] **Agent session entegrasyonu**: web şu an Gemini'yi direct çağırıyor (`/api/chat`); agent worker `/respond` endpoint'i hazırsa ileride proxy edilebilir
 
 ### Telegram Bot ✅ (2026-05-07 22:36)
 - [x] Node.js + TypeScript skeleton (`/telegram`)
