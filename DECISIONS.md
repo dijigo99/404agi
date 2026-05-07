@@ -131,3 +131,15 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 - ✅ **Logo stili**: 5 varyant hazır, kullanıcı generate edecek (öneri: glitch terminal + pixel karakter)
 - ✅ **Lore**: 103 kelime origin story yazıldı
 - [ ] **Initial AI agent sistem promptu** (agent session)
+
+---
+
+## 2026-05-08 01:30 — Cüzdan Setup (3 ayrı transparent)
+
+| Rol | Adres | Amaç |
+|---|---|---|
+| Deployer | `BqHrXekL5QpSzqnfRAcGWfdGun8bfxbUKZDjWJJ4JDGh` | Token deploy + initial buy + ops (2 SOL hazır) |
+| Marketing | `41hYnYABCTmEvDSBzTM2cCqKJk8EQfrjTGRt8TKvF3EN` | %10 reserve token, transparent harcama (Dexscreener boost, KOL, burn, buyback) |
+| Agent | `2m9JF89SndkstoWvqr1Jm9uWdrRvbhy59ryUniihrvpQ` | Karakter cüzdanı (lore: AI'ın kendi parası, self-buys, tip jar) |
+
+3'ü de aynı seed phrase'den derive (Phantom multi-account). Seed güvenli yerde tutulmalı.
