@@ -25,8 +25,9 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 
 ### Naming Convention
 - TG entity'ler için prefix: `the404agi_` (Telegram username rakamla başlayamadığı için)
-- X handle: `@404agi` (X rakamla başlayabilir)
+- X handle: **`@404agi_coin`** (resmi)
 - Domain: `404agi.fun`
+- GitHub repo: **`github.com/dijigo99/404agi`** (public)
 
 ### Operasyonel
 - ✅ Bu session = Ana Beyin (kod yazmaz, koordine eder)
