@@ -11,7 +11,7 @@
 | Ana Beyin | flamboyant-boyd-c5acf4 | 🟢 Aktif | — |
 | Branding | flamboyant-boyd-c5acf4 | ✅ Bitti | branding session |
 | Web App | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
-| Telegram Bot | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
+| Telegram Bot | flamboyant-boyd-c5acf4 | ✅ Bitti | telegram session |
 | AI Agent | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
 | Marketing | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
 
@@ -46,6 +46,26 @@
 - [x] X bio + 3 pinned tweet varyantı + 5 tweet planı → `branding/X_CONTENT.md`
 - [x] TG içerikleri (ana/TR/kanal desc + welcome msg + kurallar) → `branding/TELEGRAM_CONTENT.md`
 - [x] Meme prompt kütüphanesi (15 prompt + tweet metni) → `branding/MEME_PROMPTS.md`
+
+### Telegram Bot ✅ (2026-05-07 22:36)
+- [x] Node.js + TypeScript skeleton (`/telegram`)
+- [x] Stack: `node-telegram-bot-api` + `@google/generative-ai` + `express`
+- [x] EN komutlar: `/price` `/chart` `/buy` `/ask` `/ca` `/help` `/rules` `/announce`
+- [x] TR aliasları: `/fiyat` `/grafik` `/al` `/sor` `/yardim` `/kurallar`
+- [x] Bot komut menüsü (`setMyCommands`) auto-yüklenir
+- [x] Dexscreener servisi (fiyat snapshot + multi-pair fetch)
+- [x] Gemini servisi (sistem promptu — failed AGI karakteri, hard rules, TR/EN otomatik dil)
+- [x] Rate limit (per-user saatte 5 ask + mention, in-memory bucket)
+- [x] Buy alert (Dexscreener `txns.h1` polling, $50+ ortalama → ana grup)
+- [x] Anti-spam (link/emoji bombası/dup detection + scam pattern + CAS protection)
+- [x] Welcome handler (TR/EN chat-based, CAS banlı kullanıcı kick)
+- [x] @mention + reply-to-bot AI handler (rate limit dahil)
+- [x] HTTP server: `GET /healthz` + `POST /announce` (Bearer auth, target main/tr/news)
+- [x] Dockerfile + Procfile + railway.json + comprehensive README
+- [x] `npm run build` temiz (typecheck PASS, no errors)
+- [ ] **Manuel adım** (kullanıcı): @BotFather'da bot oluştur, token + chat ID'ler env'e
+- [ ] **Manuel adım** (kullanıcı): Railway'e deploy → URL'i web app session'a ver
+- [ ] **Launch sonrası**: `CONTRACT_ADDRESS` env set → buy alert canlı
 
 ---
 
