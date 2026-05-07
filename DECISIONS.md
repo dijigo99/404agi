@@ -14,6 +14,10 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 - ✅ Bütçe: $200 toplam
 - ✅ Yaklaşım: Build in public
 
+### Domain
+- ✅ **404agi.fun alındı (GoDaddy üzerinden, 2026-05-07)**
+- DNS sağlayıcı: GoDaddy default (Web App session'da Vercel'e yönlendirilecek — opsiyonel olarak Cloudflare üzerinden)
+
 ### Operasyonel
 - ✅ Bu session = Ana Beyin (kod yazmaz, koordine eder)
 - ✅ İşçi session'lar ayrı worktree'lerde

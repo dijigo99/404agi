@@ -60,8 +60,11 @@ Bağımlılık: Web App → Branding (lore + logo bekler). Diğerleri paralel.
 
 ## Bloker'lar
 
-- ⏸ Kullanıcı uyuyor — uyandıktan sonra Faz 1 manuel adımları
-- ⏸ Domain/X/TG handle müsaitlik kontrolü
+- ✅ Domain alındı: **404agi.fun** (GoDaddy)
+- ⏸ X handle alınacak (`@404agi`)
+- ⏸ Telegram 3 entity rezerv
+- ⏸ GitHub repo
+- ⏸ Phantom + SOL + Anthropic API
 - ⏸ Bütçe kararı — ek sermaye olacak mı? ($200 baseline, $1.5K-3K tatlı nokta)
 
 ---
