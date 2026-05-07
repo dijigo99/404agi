@@ -11,7 +11,8 @@
 | Ana Beyin | flamboyant-boyd-c5acf4 | 🟢 Aktif | — |
 | Branding | flamboyant-boyd-c5acf4 | ✅ Bitti | branding session |
 | Web App | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
-| Telegram Bot | flamboyant-boyd-c5acf4 | ✅ Bitti | telegram session |
+| Telegram Bot | flamboyant-boyd-c5acf4 | ✅ Bitti (polling) | telegram session |
+| TG Vercel Conv | flamboyant-boyd-c5acf4 | 🟢 Aktif (webhook'a çevrim) | başlatıldı |
 | AI Agent | flamboyant-boyd-c5acf4 | ✅ Bitti (kod commit'li) | agent session |
 | Marketing | flamboyant-boyd-c5acf4 | ✅ Bitti | marketing session |
 

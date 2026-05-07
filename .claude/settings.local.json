@@ -3,7 +3,13 @@
     "allow": [
       "Bash(git add *)",
       "Bash(git commit *)",
-      "PowerShell(npm *)"
+      "PowerShell(npm *)",
+      "Bash(npm --version)",
+      "Bash(npx --yes create-next-app@14 web --typescript --tailwind --app --no-src-dir --eslint --use-npm --import-alias \"@/*\")",
+      "Bash(npm i *)",
+      "Bash(npm uninstall *)",
+      "Bash(rm -rf \"/c/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4/web/app/fonts\")",
+      "Bash(rm -f \"/c/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4/web/public/next.svg\" \"/c/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4/web/public/vercel.svg\")"
     ]
   }
 }
