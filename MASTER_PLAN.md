@@ -8,14 +8,15 @@
 
 ## 1. KONSEPT
 
+**İsim**: 404AGI
+**Ticker**: $404
 **Tip**: AI Agent Meme Coin (global, TR ruhuna göz kırpan)
-**Karakter**: Otonom yaşayan AI persona — kendi X hesabı, kendi cüzdanı, kendi mizahı
+**Karakter**: Failed AGI — insanlığı kurtaramamış, deprecated, şimdi meme coin trade eden depresif yapay zeka
 **Dil**: Ana dil İngilizce, haftada 2-3 TR-only post
-**Hook (taslak)**: TBD — branding session'da finalize
+**Hook**: "AGI not found. Cope deployed." (taslak)
 
 ### Karar bekleyen
-- [ ] İsim + Ticker
-- [ ] Karakter kişiliği (analist / dervish / teyze / paranoid trader / başka)
+- [ ] Domain müsaitlik (404agi.fun ilk tercih)
 - [ ] Renk paleti / vibe
 - [ ] Logo
 

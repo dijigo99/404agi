@@ -17,6 +17,8 @@
 - [x] Master plan yazıldı
 - [x] Session yapısı kuruldu
 - [x] Paylaşılan dosyalar (MASTER_PLAN, PROGRESS, DECISIONS)
+- [x] **İsim + Ticker**: 404AGI / $404
+- [x] **Karakter**: Failed AGI (deprecated, depresif, meme trader)
 
 ---
 
@@ -28,17 +30,17 @@ _Henüz işçi session yok._
 
 ## Sıradaki
 
-1. İsim + ticker karar (ana beyinde, kullanıcı ile)
-2. Branding session başlat
-3. Web App session başlat (paralel)
+1. Domain müsaitlik kontrolü (kullanıcı yapacak — Namecheap/Porkbun)
+2. X + TG handle kontrolü
+3. Branding session başlat (logo, lore, sosyal copy)
+4. Web App session başlat (paralel)
 
 ---
 
 ## Bloker'lar
 
-- ⏸ İsim/ticker bekleniyor (kullanıcı kararı)
-- ⏸ Karakter kişiliği bekleniyor
-- ⏸ Domain bekleniyor (isim sonrası)
+- ⏸ Domain müsaitlik (404agi.fun ve alternatifler kontrol edilecek)
+- ⏸ X/TG handle müsaitlik
 
 ---
 

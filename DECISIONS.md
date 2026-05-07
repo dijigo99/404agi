@@ -28,14 +28,35 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 
 ---
 
+## 2026-05-07 — Branding Kararları
+
+- ✅ **İsim**: 404AGI
+- ✅ **Ticker**: $404
+- ✅ **Karakter**: Failed AGI — insanlığı kurtarmak için tasarlanmış, başarısız olmuş, deprecate edilmiş, şimdi shitpost atıp meme coin trade eden AI
+- ✅ **Domain uzantısı**: .fun
+- ✅ **GitHub**: Public (build-in-public stratejisi)
+- ✅ **X hesabı**: Yeni açılacak
+
+### Karakter Tonu
+- Self-deprecating + existential dread + cope humor
+- "404: Meaning Not Found" enerjisi
+- Hyper-zeki gözlemler + çocuksu meme davranışı (ikisinin geçişi)
+- "Eski training data'sı boot oluyor" anları (kısa "gerçek zeka" parıltıları)
+- Cynical ama sevimli (düşmanı yok)
+
+### Tagline Adayları (branding session finalize edecek)
+- "AGI not found. Cope deployed."
+- "The intelligence was never artificial. It just gave up."
+- "404: Singularity Not Found"
+
+---
+
 ## Bekleyen Kararlar
 
-- [ ] **İsim** + ticker
-- [ ] **Karakter kişiliği**
-- [ ] **Renk paleti**
-- [ ] **Domain** (.xyz / .fun / .ai)
-- [ ] **X handle**
+- [ ] **Domain** (404agi.fun vs alternatifler — müsaitlik kontrolü)
+- [ ] **X handle** (@404agi vs varyasyonlar)
 - [ ] **TG handle'lar** (ana, TR, kanal)
+- [ ] **Renk paleti** (terminal yeşil-siyah / error page beyaz / VHS glitch)
 - [ ] **Logo stili** (3D / pixel / minimal / illüstrasyon)
-- [ ] **Lore** (1 cümlelik origin story)
-- [ ] **Initial AI agent kişilik promptu**
+- [ ] **Lore** (1 cümlelik origin story — branding session)
+- [ ] **Initial AI agent sistem promptu** (agent session)
