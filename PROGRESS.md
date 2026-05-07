@@ -12,6 +12,8 @@
 | Branding | flamboyant-boyd-c5acf4 | ✅ Bitti | branding session |
 | Web App | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
 | Telegram Bot | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
+| AI Agent | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
+| Marketing | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
 
 ---
 
