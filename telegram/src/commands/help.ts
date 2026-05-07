@@ -7,7 +7,7 @@ export async function handleHelp(bot: TelegramBot, msg: TelegramBot.Message) {
   const chatId = msg.chat.id;
   const text = isTrChat(chatId, config.trGroupChatId) ? helpTr() : helpEn();
   await bot.sendMessage(chatId, text, {
-    parse_mode: 'Markdown',
+    parse_mode: 'HTML',
     disable_web_page_preview: true,
   });
 }
