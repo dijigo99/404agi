@@ -19,8 +19,8 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 - DNS sağlayıcı: GoDaddy default (Web App session'da Vercel'e yönlendirilecek — opsiyonel olarak Cloudflare üzerinden)
 
 ### Telegram
-- ✅ **Duyuru kanalı**: `@the404agi_news`
-- ⏳ Ana grup: "404AGI" adıyla açıldı — public link bekleniyor (önce supergroup'a yükseltilecek, sonra `@the404agi` veya `@the404agi_chat` denenecek)
+- ✅ **Duyuru kanalı**: `@the404agi_news` (https://t.me/the404agi_news)
+- ✅ **Ana grup**: `@the404agi` (https://t.me/the404agi)
 - ⏳ TR alt grup: henüz açılmadı (`@the404agi_tr` rezerve edilecek)
 
 ### Naming Convention

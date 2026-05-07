@@ -62,9 +62,9 @@ Bağımlılık: Web App → Branding (lore + logo bekler). Diğerleri paralel.
 
 - ✅ Domain alındı: **404agi.fun** (GoDaddy)
 - ✅ Telegram duyuru kanalı: `@the404agi_news`
+- ✅ Telegram ana grup: **`@the404agi`** (https://t.me/the404agi)
 - ✅ X hesabı: **`@404agi_coin`**
 - ✅ GitHub repo: **`github.com/dijigo99/404agi`** (public)
-- 🟡 TG ana grup açıldı, public link kuruluyor (`@the404agi` hedef)
 - ⏸ TG TR alt grup (`@the404agi_tr`)
 - ⏸ Phantom + SOL + Anthropic API
 - ⏸ Bütçe kararı — ek sermaye olacak mı? ($200 baseline, $1.5K-3K tatlı nokta)
