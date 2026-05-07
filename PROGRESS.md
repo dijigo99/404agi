@@ -61,8 +61,10 @@ Bağımlılık: Web App → Branding (lore + logo bekler). Diğerleri paralel.
 ## Bloker'lar
 
 - ✅ Domain alındı: **404agi.fun** (GoDaddy)
+- ✅ Telegram duyuru kanalı: `@the404agi_news`
+- 🟡 TG ana grup açıldı, public link kuruluyor (`@the404agi` hedef)
+- ⏸ TG TR alt grup (`@the404agi_tr`)
 - ⏸ X handle alınacak (`@404agi`)
-- ⏸ Telegram 3 entity rezerv
 - ⏸ GitHub repo
 - ⏸ Phantom + SOL + Anthropic API
 - ⏸ Bütçe kararı — ek sermaye olacak mı? ($200 baseline, $1.5K-3K tatlı nokta)

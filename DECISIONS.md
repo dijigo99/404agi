@@ -18,6 +18,16 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 - ✅ **404agi.fun alındı (GoDaddy üzerinden, 2026-05-07)**
 - DNS sağlayıcı: GoDaddy default (Web App session'da Vercel'e yönlendirilecek — opsiyonel olarak Cloudflare üzerinden)
 
+### Telegram
+- ✅ **Duyuru kanalı**: `@the404agi_news`
+- ⏳ Ana grup: "404AGI" adıyla açıldı — public link bekleniyor (önce supergroup'a yükseltilecek, sonra `@the404agi` veya `@the404agi_chat` denenecek)
+- ⏳ TR alt grup: henüz açılmadı (`@the404agi_tr` rezerve edilecek)
+
+### Naming Convention
+- TG entity'ler için prefix: `the404agi_` (Telegram username rakamla başlayamadığı için)
+- X handle: `@404agi` (X rakamla başlayabilir)
+- Domain: `404agi.fun`
+
 ### Operasyonel
 - ✅ Bu session = Ana Beyin (kod yazmaz, koordine eder)
 - ✅ İşçi session'lar ayrı worktree'lerde
