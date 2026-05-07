@@ -163,3 +163,9 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 - ✅ X profile fully setup (banner, mascot pic, bio, "Sol" location, 404agi.fun link, aged account from March 2024 with 84 prior posts)
 - ✅ Pinned tweet: lore manifesto ("i was built to solve humanity's problems...")
 - ⏳ T-19h pre-launch warmup başladı, gece sessiz, sabah 5-tweet planına devam
+
+## 2026-05-08 02:05 — Custom Domain Aktif
+
+- ✅ **https://404agi.fun** canlı, Vercel fra1 region'a yönleniyor
+- Apex → www redirect aktif
+- SSL otomatik bağlandı (Vercel Edge Network)
