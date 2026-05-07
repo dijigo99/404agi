@@ -143,3 +143,15 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
 | Agent | `2m9JF89SndkstoWvqr1Jm9uWdrRvbhy59ryUniihrvpQ` | Karakter cüzdanı (lore: AI'ın kendi parası, self-buys, tip jar) |
 
 3'ü de aynı seed phrase'den derive (Phantom multi-account). Seed güvenli yerde tutulmalı.
+
+---
+
+## 2026-05-08 01:35 — Launch Timing Karar
+
+- ✅ **Launch tarihi**: 2026-05-08 (bugün) akşam **21:00-23:00 TR**
+- **Why**: US+EU prime time çakışması, 18+ saat pre-launch warmup penceresi, dinlenmiş kafa
+- **Pre-launch plan**:
+  - Sabah 09-12: DNS verify, pump.fun form hazırla, son smoke test
+  - Öğlen 13-18: X warmup (5 lore tweet), TG seed posts, build-in-public thread başlat, KOL DM kampanyası
+  - Akşam 19-21: Final hazırlık, raid metinleri stage
+  - **T-0 (21:00-22:00)**: Pump.fun deploy → CA env update → pinned tweet → TG launch → grind
