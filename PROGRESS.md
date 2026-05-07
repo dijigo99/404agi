@@ -9,6 +9,7 @@
 | Session | Worktree | Durum | Sahibi |
 |---|---|---|---|
 | Ana Beyin | flamboyant-boyd-c5acf4 | 🟢 Aktif | — |
+| Branding | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
 
 ---
 
