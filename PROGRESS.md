@@ -65,8 +65,9 @@ Bağımlılık: Web App → Branding (lore + logo bekler). Diğerleri paralel.
 - ✅ Telegram ana grup: **`@the404agi`** (https://t.me/the404agi)
 - ✅ X hesabı: **`@404agi_coin`**
 - ✅ GitHub repo: **`github.com/dijigo99/404agi`** (public)
+- ✅ Phantom cüzdan: `@404agiwallet` — 2.02 SOL (~$178) hazır
 - ⏸ TG TR alt grup (`@the404agi_tr`)
-- ⏸ Phantom + SOL + Anthropic API
+- ⏸ Anthropic API key + kredi
 - ⏸ Bütçe kararı — ek sermaye olacak mı? ($200 baseline, $1.5K-3K tatlı nokta)
 
 ---

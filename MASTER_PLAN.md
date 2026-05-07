@@ -53,9 +53,9 @@
 
 | Rol | Adres | Not |
 |---|---|---|
-| Deployer | TBD | Token oluşturma |
-| Marketing | TBD | Rezerv %10, public |
-| AI Agent | TBD | Karakterin cüzdanı (lore) |
+| Deployer | `@404agiwallet` (2.02 SOL hazır) | ✅ Token oluşturma cüzdanı |
+| Marketing | TBD | Rezerv %10, public — sonra oluşturulacak |
+| AI Agent | TBD | Karakterin cüzdanı (lore) — sonra oluşturulacak |
 
 ---
 
