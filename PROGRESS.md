@@ -12,35 +12,57 @@
 
 ---
 
-## Tamamlanan
+## Tamamlanan (Ana Beyin — kullanıcı uyurken)
 
 - [x] Master plan yazıldı
 - [x] Session yapısı kuruldu
 - [x] Paylaşılan dosyalar (MASTER_PLAN, PROGRESS, DECISIONS)
 - [x] **İsim + Ticker**: 404AGI / $404
 - [x] **Karakter**: Failed AGI (deprecated, depresif, meme trader)
+- [x] **LAUNCH_TIMELINE.md** — saat saat detaylı plan (Faz 0-7)
+- [x] **WEBSITE_SPEC.md** — profesyonel site tam spec (tasarım, bölümler, tech stack, kalite gereksinimleri)
+- [x] **PRE_LAUNCH_CHECKLIST.md** — kritik / yüksek / orta öncelik kalemler + senaryo planları
+- [x] **5 işçi session brief'i hazır**:
+  - BRANDING_BRIEF.md
+  - WEB_APP_BRIEF.md
+  - AGENT_BRIEF.md
+  - TELEGRAM_BRIEF.md
+  - MARKETING_BRIEF.md
 
 ---
 
 ## Devam Eden
 
-_Henüz işçi session yok._
+_Henüz işçi session açılmadı — kullanıcı uyandıktan sonra başlayacak._
 
 ---
 
-## Sıradaki
+## Sıradaki (kullanıcı uyandığında)
 
-1. Domain müsaitlik kontrolü (kullanıcı yapacak — Namecheap/Porkbun)
-2. X + TG handle kontrolü
-3. Branding session başlat (logo, lore, sosyal copy)
-4. Web App session başlat (paralel)
+### Önce kullanıcı (1-2 saat manuel)
+1. Domain al — `404agi.fun`
+2. X hesabı aç — `@404agi`
+3. Telegram 3 entity (ana, TR, kanal)
+4. Phantom + 0.5 SOL
+5. Anthropic API key + $50 kredi
+6. GitHub repo — public
+
+### Sonra paralel session'lar başlar
+- **Branding session** → BRANDING_BRIEF.md ile
+- **Web App session** → WEB_APP_BRIEF.md ile
+- **AI Agent session** → AGENT_BRIEF.md ile
+- **Telegram Bot session** → TELEGRAM_BRIEF.md ile
+- **Marketing session** → MARKETING_BRIEF.md ile
+
+Bağımlılık: Web App → Branding (lore + logo bekler). Diğerleri paralel.
 
 ---
 
 ## Bloker'lar
 
-- ⏸ Domain müsaitlik (404agi.fun ve alternatifler kontrol edilecek)
-- ⏸ X/TG handle müsaitlik
+- ⏸ Kullanıcı uyuyor — uyandıktan sonra Faz 1 manuel adımları
+- ⏸ Domain/X/TG handle müsaitlik kontrolü
+- ⏸ Bütçe kararı — ek sermaye olacak mı? ($200 baseline, $1.5K-3K tatlı nokta)
 
 ---
 
