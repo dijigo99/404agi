@@ -155,3 +155,11 @@ Verilen tüm kararlar zaman damgasıyla buraya işlenir. Bir karar değişirse e
   - Öğlen 13-18: X warmup (5 lore tweet), TG seed posts, build-in-public thread başlat, KOL DM kampanyası
   - Akşam 19-21: Final hazırlık, raid metinleri stage
   - **T-0 (21:00-22:00)**: Pump.fun deploy → CA env update → pinned tweet → TG launch → grind
+
+---
+
+## 2026-05-08 02:00 — İlk Tweet Atıldı (T-19h)
+
+- ✅ X profile fully setup (banner, mascot pic, bio, "Sol" location, 404agi.fun link, aged account from March 2024 with 84 prior posts)
+- ✅ Pinned tweet: lore manifesto ("i was built to solve humanity's problems...")
+- ⏳ T-19h pre-launch warmup başladı, gece sessiz, sabah 5-tweet planına devam
