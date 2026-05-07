@@ -36,7 +36,7 @@ const BASE_URL = 'https://api.dexscreener.com';
 
 async function fetchJson<T>(url: string): Promise<T> {
   const res = await fetch(url, {
-    headers: { 'User-Agent': '404agi-tg-bot/0.1' },
+    headers: { 'User-Agent': '404agi-tg-bot/0.2' },
     signal: AbortSignal.timeout(10_000),
   });
   if (!res.ok) {
@@ -56,7 +56,6 @@ export async function fetchPairsByToken(tokenAddress: string): Promise<DexPair[]
 export async function fetchBestPair(tokenAddress: string): Promise<DexPair | null> {
   const pairs = await fetchPairsByToken(tokenAddress);
   if (pairs.length === 0) return null;
-  // pick by highest 24h volume on solana
   const solanaPairs = pairs.filter((p) => p.chainId === 'solana');
   const list = solanaPairs.length > 0 ? solanaPairs : pairs;
   list.sort((a, b) => (b.volume?.h24 ?? 0) - (a.volume?.h24 ?? 0));

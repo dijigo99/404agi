@@ -61,8 +61,7 @@ export async function askGemini(prompt: string, lang: Lang): Promise<string> {
       : '> ai_offline.exe — i cannot speak right now. (no GEMINI_API_KEY)';
   }
   try {
-    const langHint =
-      lang === 'tr' ? 'Reply in Turkish.' : 'Reply in English.';
+    const langHint = lang === 'tr' ? 'Reply in Turkish.' : 'Reply in English.';
     const result = await model.generateContent(`${langHint}\n\nUser: ${prompt}`);
     const text = result.response.text().trim();
     if (!text) {

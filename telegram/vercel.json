@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/cron/buy-alert",
+      "schedule": "* * * * *"
+    }
+  ],
+  "functions": {
+    "api/webhook.ts": { "maxDuration": 30 },
+    "api/announce.ts": { "maxDuration": 10 },
+    "api/healthz.ts": { "maxDuration": 5 },
+    "api/cron/buy-alert.ts": { "maxDuration": 30 }
+  }
+}

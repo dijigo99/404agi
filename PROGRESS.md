@@ -1,6 +1,6 @@
 # PROGRESS — Canlı Durum
 
-**Son güncelleme**: 2026-05-07 23:45 (web app session — landing + AI chat + wallet connect canlı, build geçti)
+**Son güncelleme**: 2026-05-08 00:11 (TG Vercel webhook conversion bitti — typecheck + smoke test PASS, deploy hazır)
 
 ---
 
@@ -12,7 +12,7 @@
 | Branding | flamboyant-boyd-c5acf4 | ✅ Bitti | branding session |
 | Web App | flamboyant-boyd-c5acf4 | ✅ Bitti (build geçti, Vercel deploy beklemede) | web session |
 | Telegram Bot | flamboyant-boyd-c5acf4 | ✅ Bitti (polling) | telegram session |
-| TG Vercel Conv | flamboyant-boyd-c5acf4 | 🟢 Aktif (webhook'a çevrim) | başlatıldı |
+| TG Vercel Conv | flamboyant-boyd-c5acf4 | ✅ Bitti (webhook hazır, deploy edilebilir) | tg vercel session |
 | AI Agent | flamboyant-boyd-c5acf4 | ✅ Bitti (kod commit'li) | agent session |
 | Marketing | flamboyant-boyd-c5acf4 | ✅ Bitti | marketing session |
 
@@ -122,8 +122,34 @@
 - [x] Dockerfile + Procfile + railway.json + comprehensive README
 - [x] `npm run build` temiz (typecheck PASS, no errors)
 - [ ] **Manuel adım** (kullanıcı): @BotFather'da bot oluştur, token + chat ID'ler env'e
-- [ ] **Manuel adım** (kullanıcı): Railway'e deploy → URL'i web app session'a ver
+- [x] **REFACTOR (2026-05-08 00:11)**: Vercel webhook moduna çevrildi (aşağı bak)
 - [ ] **Launch sonrası**: `CONTRACT_ADDRESS` env set → buy alert canlı
+
+### TG Vercel Webhook Conversion ✅ (2026-05-08 00:11)
+- [x] Yeni yapı: `telegram/api/` (Vercel functions) + `telegram/lib/` (saf fonksiyonlar)
+- [x] **Endpoints**:
+  - `POST /api/webhook` — Telegram update entry, `secret_token` header doğrulaması
+  - `GET /api/healthz` — health check
+  - `POST /api/announce` — cross-service Bearer auth (mevcut davranış aynen)
+  - `GET /api/cron/buy-alert` — Vercel Cron (her dakika, Pro plan), Bearer `CRON_SECRET`
+- [x] **Router** (`lib/router.ts`) — manuel command parse + dispatch (ask/price/chart/buy/ca/help/rules/announce + TR aliases), welcome / moderation / mention handler'larını sırayla çağırır
+- [x] **Polling kaldırıldı** — `node-telegram-bot-api` sadece sender (no-polling singleton)
+- [x] **State stateless'e taşındı** — Upstash Redis backed:
+  - `rl:ask:<userId>` (saatlik counter, INCR + EXPIRE)
+  - `mod:dup:<userId>` (sorted set, son 5dk hash'leri)
+  - `buyalert:pair:<addr>` (TTL 6h pair state)
+  - KV yoksa local in-memory fallback
+- [x] **Webhook setup script'leri**: `npm run webhook:set <url>`, `npm run webhook:delete`, `npm run commands:set`
+- [x] **Smoke test** (`npm run smoke`) — 13 senaryo geçer (commands, mention, scam, welcome, moderation), Telegram'a hiç dokunmadan router unit-tests
+- [x] **Eski dosyalar silindi** — `src/`, `Dockerfile`, `Procfile`, `railway.json` (git history'de var: commit `c15a403`)
+- [x] **Yeni env'ler**: `WEBHOOK_SECRET`, `CRON_SECRET`, `BOT_USERNAME`, `UPSTASH_REDIS_REST_URL`, `_TOKEN`
+- [x] **Kaldırılan env'ler**: `PORT`, `BUY_ALERT_POLL_MS` (cron schedule'ı `vercel.json`'da)
+- [x] `npm run typecheck` PASS, `npm run smoke` PASS
+- [x] `README.md` Vercel deploy adımlarıyla yeniden yazıldı (mimari diagram + checklist)
+- [ ] **Manuel adım** (kullanıcı): `vercel link` + `vercel --prod`, env'leri Dashboard'da set et
+- [ ] **Manuel adım** (kullanıcı): Upstash Redis Marketplace'ten bağla
+- [ ] **Manuel adım** (kullanıcı): `npm run webhook:set <prod-url>/api/webhook`
+- [ ] **Manuel adım** (kullanıcı): Vercel Pro plan gerek (Hobby cron sadece günlük) — yoksa cron schedule `0 * * * *` yap
 
 ---
 

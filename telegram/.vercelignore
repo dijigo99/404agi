@@ -1,7 +1,8 @@
-node_modules/
-dist/
-.vercel/
+node_modules
+dist
+src
 .env
 .env.local
 *.log
 .DS_Store
+.vercel

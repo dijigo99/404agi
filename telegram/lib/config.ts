@@ -1,7 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 function required(name: string): string {
   const v = process.env[name];
   if (!v) throw new Error(`Missing required env var: ${name}`);
@@ -29,7 +25,9 @@ function numberList(name: string): number[] {
 }
 
 export const config = {
-  botToken: required('TELEGRAM_BOT_TOKEN'),
+  get botToken() {
+    return required('TELEGRAM_BOT_TOKEN');
+  },
   contractAddress: optional('CONTRACT_ADDRESS'),
   siteUrl: optional('SITE_URL', 'https://404agi.fun'),
   xUrl: optional('X_URL', 'https://x.com/404agi_coin'),
@@ -45,13 +43,14 @@ export const config = {
   geminiModel: optional('GEMINI_MODEL', 'gemini-2.5-flash'),
 
   buyAlertMinUsd: intEnv('BUY_ALERT_MIN_USD', 50),
-  buyAlertPollMs: intEnv('BUY_ALERT_POLL_MS', 60_000),
 
   askRateLimitPerHour: intEnv('ASK_RATE_LIMIT_PER_HOUR', 5),
 
   announceApiKey: optional('ANNOUNCE_API_KEY'),
+  webhookSecret: optional('WEBHOOK_SECRET'),
+  cronSecret: optional('CRON_SECRET'),
 
-  port: intEnv('PORT', 3000),
+  botUsername: optional('BOT_USERNAME'),
 } as const;
 
 export const TOKEN_NAME = '404AGI';

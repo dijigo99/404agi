@@ -2,6 +2,8 @@
 
 Telegram bot for **404AGI ($404)** — Solana meme coin.
 
+**Mode**: Vercel serverless (webhook). Stateless functions, Upstash Redis for cross-invocation state, Vercel Cron for buy alerts.
+
 Handles community commands, AI Q&A (Gemini 2.5 Flash), buy alerts (Dexscreener), anti-spam moderation, CAS check, and an HTTP API for cross-service announcements.
 
 ---
@@ -24,48 +26,123 @@ Bot `@mention` veya bot mesajına reply → /ask gibi davranır (rate limit'e da
 ## Otomatik Davranışlar
 
 - **Welcome**: yeni üyelere TR/EN otomatik karşılama (CAS banlı kullanıcılar otomatik kick).
-- **Buy alert**: Dexscreener `txns.h1` polling. ≥`BUY_ALERT_MIN_USD` (default $50) ortalama buy → ana gruba duyuru.
+- **Buy alert**: Vercel Cron her dakika `/api/cron/buy-alert` tetikler. Dexscreener `txns.h1` snapshot'larını Upstash Redis'te tutar; ≥`BUY_ALERT_MIN_USD` (default $50) ortalama buy → ana gruba duyuru.
 - **Moderation**: link spam (3+), emoji bombası (12+), tekrar mesaj (3x/5dk), scam paternleri → mesaj silinir.
-- **Bot komut menüsü**: BotFather'a otomatik yüklenir (`setMyCommands`).
+- **Bot komut menüsü**: `npm run commands:set` ile BotFather'a yüklenir.
 
 ---
 
-## Kurulum
+## Mimari
 
-```bash
-# 1) Bot oluştur
-# Telegram'da @BotFather → /newbot
-#   name: 404AGI
-#   username: @the404agi_bot
-# Token al, .env'ye yaz.
-
-# 2) Bağımlılıklar
-cd telegram
-npm install
-
-# 3) Env
-cp .env.example .env
-# Düzenle: TELEGRAM_BOT_TOKEN, GEMINI_API_KEY, vs.
-
-# 4) Dev (hot reload)
-npm run dev
-
-# 5) Build + prod
-npm run build
-npm start
+```
+┌─────────────┐                    ┌─────────────────────────────────┐
+│  Telegram   │── webhook POST ──▶ │ /api/webhook  (Vercel function) │
+│  servers    │                    │   ↓ routeUpdate                 │
+└─────────────┘                    │   ├─ commands (price/ask/etc)   │
+       ▲                           │   ├─ welcome (new_chat_members) │
+       │ sendMessage               │   ├─ moderation                 │
+       │                           │   └─ mention/reply-to-bot AI    │
+       └───── reply ◀──────────────┘                                 │
+                                   │                                 │
+┌─────────────┐                    │  /api/announce (Bearer auth)    │
+│  Web app    │── POST ──────────▶ │  /api/healthz                   │
+└─────────────┘                    │  /api/cron/buy-alert (Vercel ⏱) │
+                                   └─────────────────────────────────┘
+                                           ↓ state
+                                   ┌─────────────────┐
+                                   │ Upstash Redis   │
+                                   │  - rate limit   │
+                                   │  - dup detect   │
+                                   │  - pair state   │
+                                   └─────────────────┘
 ```
 
-### Chat ID'lerini Bulmak
+State'ler Upstash Redis'te tutulur (her invocation izole serverless instance):
+- `rl:ask:<userId>` — saatlik /ask + mention sayacı
+- `mod:dup:<userId>` — son 5 dakikadaki mesaj hash'leri (sorted set)
+- `buyalert:pair:<pairAddr>` — son polling state'i (TTL 6h)
 
-Bot'u gruplara ve kanala ekledikten sonra log'larda `chatId` görünecek. Veya:
-- Bota `@getidsbot` ekle → grup ID'sini söyler.
-- Kanal ID'leri için botu admin yap, sonra kanala bir `/help` komut çağrısı dene; gelmezse `getUpdates` API'sini kullan.
+KV yoksa local dev'de in-memory fallback'e düşer (instance-bound, prod'da güvenilmez).
 
-`MAIN_GROUP_CHAT_ID`, `TR_GROUP_CHAT_ID`, `NEWS_CHANNEL_CHAT_ID` env'lerine yaz.
+---
 
-### Admin User ID'leri
+## Kurulum (Vercel)
 
-`/announce` ve moderation muafiyeti için. Telegram username yetmez — numeric ID lazım. `@userinfobot` veya `@getidsbot` ile öğren.
+### 1) Bot oluştur
+Telegram'da **@BotFather** → `/newbot`
+- name: `404AGI`
+- username: `the404agi_bot` (örn.)
+
+Token'ı al, `.env`'ye yaz.
+
+### 2) Bağımlılıklar
+```bash
+cd telegram
+npm install
+```
+
+### 3) Env dosyası
+```bash
+cp .env.example .env
+# Düzenle: TELEGRAM_BOT_TOKEN, GEMINI_API_KEY, ANNOUNCE_API_KEY...
+# WEBHOOK_SECRET ve CRON_SECRET üret:
+#   openssl rand -hex 32
+```
+
+### 4) Local geliştirme
+```bash
+# Vercel CLI gerek (npm i -g vercel)
+vercel link            # bir kez, projeyi Vercel hesabına bağla
+vercel env pull        # env'leri Vercel'den çek
+npm run dev            # vercel dev → localhost:3000
+
+# Smoke test (hiçbir external servise dokunmaz)
+npm run smoke
+```
+
+### 5) Deploy
+```bash
+# İlk deploy
+vercel
+# Production
+vercel --prod
+```
+
+Vercel Dashboard'dan **Settings → Environment Variables** altında tüm env'leri kopyala (özellikle `TELEGRAM_BOT_TOKEN`, `WEBHOOK_SECRET`, `GEMINI_API_KEY`, chat ID'ler, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`).
+
+### 6) Upstash Redis
+Vercel Dashboard → **Storage → Create → Upstash Redis** → projeye bağla.
+`UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` env'lere otomatik gelir.
+
+> Free tier (10K command/gün) Telegram bot trafiği için yeterli. Buy alert dakikada 1 = 1440/gün; rate limit + dup detection per-user → ucuz.
+
+### 7) Webhook'u Telegram'a bağla
+Deploy URL'inle:
+```bash
+npm run webhook:set https://<your-app>.vercel.app/api/webhook
+```
+Output:
+```
+setWebhook result: true
+webhookInfo: { url: "...", pending_update_count: 0, ... }
+bot @the404agi_bot (id=...) — webhook → ...
+```
+
+Webhook'u kaldırmak için: `npm run webhook:delete`
+
+### 8) Bot komut menüsü
+```bash
+npm run commands:set
+```
+
+### 9) Bot'u gruplara ekle
+3 entity (ana grup, TR grup, kanal) — admin yetkisiyle.
+
+Chat ID'leri öğrenmek için:
+- `@getidsbot` ekleyip "/start"
+- veya log'da görünen ilk webhook update'inde
+
+`MAIN_GROUP_CHAT_ID`, `TR_GROUP_CHAT_ID`, `NEWS_CHANNEL_CHAT_ID` env'e yaz, `vercel --prod` ile yeniden deploy et (ya da Dashboard'dan env güncelleyip redeploy).
 
 ---
 
@@ -74,34 +151,40 @@ Bot'u gruplara ve kanala ekledikten sonra log'larda `chatId` görünecek. Veya:
 | Var | Zorunlu | Default | Açıklama |
 |---|---|---|---|
 | `TELEGRAM_BOT_TOKEN` | ✅ | — | @BotFather token |
+| `BOT_USERNAME` | ⚠️ önerilir | — | mention parser cold-start'ı için (`@'siz`) |
+| `WEBHOOK_SECRET` | ✅ prod | — | setWebhook secret_token, header doğrulaması |
+| `CRON_SECRET` | hayır | — | Vercel Cron Bearer; set edilmezse cron public |
 | `GEMINI_API_KEY` | (ask için) | — | Google AI Studio key |
-| `GEMINI_MODEL` | hayır | `gemini-2.5-flash` | Model adı |
-| `CONTRACT_ADDRESS` | hayır | — | Solana token CA — boşsa /price /chart /buy "pre-launch" mesajı verir |
-| `MAIN_GROUP_CHAT_ID` | (buy alert + announce için) | — | EN ana grup chat ID |
-| `TR_GROUP_CHAT_ID` | hayır | — | TR alt grup chat ID (TR yanıtlama için) |
-| `NEWS_CHANNEL_CHAT_ID` | (announce için) | — | Duyuru kanalı chat ID |
+| `GEMINI_MODEL` | hayır | `gemini-2.5-flash` | |
+| `CONTRACT_ADDRESS` | hayır | — | Solana token CA — boşsa /price /chart /buy "pre-launch" |
+| `MAIN_GROUP_CHAT_ID` | (buy alert + announce) | — | EN ana grup |
+| `TR_GROUP_CHAT_ID` | hayır | — | TR alt grup (TR yanıt için) |
+| `NEWS_CHANNEL_CHAT_ID` | (announce için) | — | Duyuru kanalı |
 | `ADMIN_USER_IDS` | hayır | — | Virgülle ayrılmış numeric ID listesi |
 | `BUY_ALERT_MIN_USD` | hayır | `50` | Buy alert eşiği |
-| `BUY_ALERT_POLL_MS` | hayır | `60000` | Polling sıklığı |
-| `ASK_RATE_LIMIT_PER_HOUR` | hayır | `5` | Kullanıcı başına /ask + mention limiti |
-| `ANNOUNCE_API_KEY` | (HTTP /announce için) | — | Bearer token, web app çağrısı için |
+| `ASK_RATE_LIMIT_PER_HOUR` | hayır | `5` | /ask + mention limiti |
+| `ANNOUNCE_API_KEY` | (HTTP /announce için) | — | Bearer token |
+| `UPSTASH_REDIS_REST_URL` | ✅ prod | — | KV — Vercel marketplace bağlanınca otomatik |
+| `UPSTASH_REDIS_REST_TOKEN` | ✅ prod | — | Aynı |
 | `SITE_URL` | hayır | `https://404agi.fun` | |
 | `X_URL` | hayır | `https://x.com/404agi_coin` | |
 | `GITHUB_URL` | hayır | `https://github.com/dijigo99/404agi` | |
-| `PORT` | hayır | `3000` | HTTP server portu |
+
+> `BUY_ALERT_POLL_MS` artık YOK — Vercel Cron schedule kullanır (`vercel.json`).
+> `PORT` artık YOK — Vercel function'ları portless.
 
 ---
 
 ## HTTP API
 
-### `GET /healthz`
-Healthcheck. `{ ok: true, ts }` döner.
+### `GET /api/healthz`
+Healthcheck. `{ ok: true, ts, service }` döner.
 
-### `POST /announce`
-Cross-service duyuru (örn. web app session'ı bunu kullanabilir).
+### `POST /api/announce`
+Cross-service duyuru.
 
 ```bash
-curl -X POST https://your-bot-url/announce \
+curl -X POST https://<app>.vercel.app/api/announce \
   -H "Authorization: Bearer $ANNOUNCE_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"text":"📡 Token deployed. CA: <addr>","target":"news"}'
@@ -109,50 +192,29 @@ curl -X POST https://your-bot-url/announce \
 
 `target`: `news` (default), `main`, `tr`.
 
----
-
-## Deploy
-
-### Railway (önerilen, en hızlı)
-
-1. https://railway.app → **New Project → Deploy from GitHub repo**
-2. Bu klasörü root olarak işaretle (veya monorepo'da subdir).
-3. **Variables**: yukarıdaki env tablosundaki tüm zorunlular.
-4. Deploy → healthcheck `/healthz` otomatik kontrol edilir.
-5. Public URL'i web app'e ver: `https://<your-app>.up.railway.app/announce`.
-
-`railway.json` zaten yapılandırılmış (NIXPACKS + healthcheck).
-
-### Docker
-
+### `POST /api/webhook`
+Telegram webhook. **Manuel çağırma**: Telegram-Bot-Api-Secret-Token header'ı doğrulanır. Test için:
 ```bash
-docker build -t 404agi-tg .
-docker run --env-file .env -p 3000:3000 404agi-tg
+curl -X POST http://localhost:3000/api/webhook \
+  -H "X-Telegram-Bot-Api-Secret-Token: $WEBHOOK_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"update_id":1,"message":{"message_id":1,"date":1700000000,"chat":{"id":-100123,"type":"group"},"from":{"id":42,"is_bot":false,"first_name":"Tester"},"text":"/help"}}'
 ```
 
-### Fly.io / Render / VPS
+### `GET /api/cron/buy-alert`
+Vercel Cron tetikler (`* * * * *`). Manuel test:
+```bash
+curl https://<app>.vercel.app/api/cron/buy-alert \
+  -H "Authorization: Bearer $CRON_SECRET"
+```
 
-`Procfile` (`web: npm start`) destekli. Manuel olarak `npm run build && node dist/index.js` çalıştır.
-
-⚠️ **Vercel'de çalışmaz** — long polling için kalıcı process gerek.
-
----
-
-## Buy Alert Mantığı
-
-Dexscreener'ın token endpoint'ine `BUY_ALERT_POLL_MS` aralıklarla GET atar. Her pair için `txns.h1.buys` ve `volume.h1` farkını izler. Yeni alımlar varsa, ortalama USD değeri (`yeni_volume / yeni_alım / 2` — sells dahil olduğu için 2'ye böl) eşiği geçtiğinde gruba post atar.
-
-İlk pull'da sadece state kaydedilir, mesaj atılmaz. Sonra her tick'te delta'ya bakılır.
-
-> Not: Bu yaklaşım **dakikalık precision** sağlar, tek bir tx'i yakalamaz. Birden fazla pair varsa (pump.fun + Raydium graduate) hepsi izlenir.
-
-İleride iyileştirme: doğrudan Solana RPC `getSignaturesForAddress` ile tx-by-tx hassasiyet.
+> ⚠️ Vercel **Hobby plan'da cron sadece günlük**. Pro plan ($20/ay) → dakika seviyesi. Buy alert hassasiyeti Pro plan gerektirir; Hobby'de `vercel.json` schedule'ı `0 * * * *` (saatlik) yap veya web app session'dan `/api/announce` üzerinden manuel tetikle.
 
 ---
 
 ## Karakter Tonu (AI yanıtlar)
 
-`src/services/gemini.ts` içinde `SYSTEM_PROMPT_BASE` bulunur. Düzenlerken:
+`lib/services/gemini.ts` içinde `SYSTEM_PROMPT_BASE` bulunur. Düzenlerken:
 - Self-deprecating + cope humor + 404/system metaforu korunmalı.
 - Hard rules: finansal tavsiye yok, politik/dini içerik yok, kişisel saldırı yok.
 - Lowercase tercih, kısa.
@@ -164,22 +226,28 @@ Dexscreener'ın token endpoint'ine `BUY_ALERT_POLL_MS` aralıklarla GET atar. He
 
 - [ ] @BotFather'da bot oluşturuldu, token `.env`'de.
 - [ ] Bot 3 entity'e eklendi (ana grup, TR grup, kanal — admin yetkisiyle).
-- [ ] `MAIN_GROUP_CHAT_ID`, `TR_GROUP_CHAT_ID`, `NEWS_CHANNEL_CHAT_ID` env'lere yazıldı.
-- [ ] `ADMIN_USER_IDS`'e ana hesap eklendi.
+- [ ] `MAIN_GROUP_CHAT_ID`, `TR_GROUP_CHAT_ID`, `NEWS_CHANNEL_CHAT_ID` Vercel env'de.
+- [ ] `ADMIN_USER_IDS`'e ana hesap.
+- [ ] `WEBHOOK_SECRET` üretildi (`openssl rand -hex 32`) ve env'de.
 - [ ] `GEMINI_API_KEY` set, `/ask` test edildi.
-- [ ] `ANNOUNCE_API_KEY` set, web app session bilgilendirildi.
+- [ ] `ANNOUNCE_API_KEY` set, web app session'a verildi.
+- [ ] Upstash Redis bağlandı (`UPSTASH_REDIS_REST_URL` + `_TOKEN`).
+- [ ] `vercel --prod` deploy yeşil; `/api/healthz` 200 döner.
+- [ ] `npm run webhook:set <prod-url>/api/webhook` çalıştı.
+- [ ] `npm run commands:set` çalıştı (BotFather menü).
 - [ ] Test grubunda tüm komutlar test edildi.
-- [ ] Railway/Docker deploy edildi, healthcheck yeşil.
-- [ ] Launch sonrası `CONTRACT_ADDRESS` set edildi → buy alert canlı.
+- [ ] Launch sonrası `CONTRACT_ADDRESS` env set + redeploy → buy alert canlı.
 
 ---
 
 ## Güvenlik Notları
 
 - `.env` **commit edilmez** (.gitignore'da).
+- `WEBHOOK_SECRET` setlenmediyse webhook public — set et.
 - `ANNOUNCE_API_KEY` rastgele uzun bir string olsun (`openssl rand -hex 32`).
 - Bot moderasyonu admin'leri muaf tutar — `ADMIN_USER_IDS` doğru olmalı.
-- CAS API down olabilir — bot bunu graceful fallback ile geçer (member kabul).
+- CAS API down olabilir — bot graceful fallback ile geçer (member kabul).
+- Webhook function 30s `maxDuration` — uzun Gemini cevapları için yeterli.
 
 ---
 
@@ -187,24 +255,43 @@ Dexscreener'ın token endpoint'ine `BUY_ALERT_POLL_MS` aralıklarla GET atar. He
 
 ```
 telegram/
-├── src/
-│   ├── index.ts            # Ana entry
-│   ├── config.ts
-│   ├── server.ts           # Express healthcheck + /announce
-│   ├── commands/
-│   │   ├── price.ts ask.ts buy.ts ca.ts chart.ts help.ts rules.ts announce.ts
-│   ├── handlers/
-│   │   ├── welcome.ts moderation.ts mention.ts
-│   ├── services/
-│   │   ├── dexscreener.ts gemini.ts buyAlert.ts moderation.ts rateLimit.ts
-│   ├── content/
-│   │   ├── welcome.ts help.ts
-│   └── utils/
-│       └── format.ts lang.ts logger.ts
-├── package.json tsconfig.json
-├── Dockerfile Procfile railway.json
+├── api/                         # Vercel functions
+│   ├── webhook.ts               # POST: Telegram update entry
+│   ├── healthz.ts               # GET
+│   ├── announce.ts              # POST + Bearer
+│   └── cron/buy-alert.ts        # GET: cron tetikler
+├── lib/
+│   ├── botClient.ts             # singleton TelegramBot (no polling)
+│   ├── kv.ts                    # Upstash Redis wrapper
+│   ├── config.ts router.ts
+│   ├── commands/                # price ask buy ca chart help rules announce
+│   ├── handlers/                # welcome moderation mention
+│   ├── services/                # dexscreener gemini buyAlert moderation rateLimit
+│   ├── content/                 # welcome help
+│   └── utils/                   # format lang logger
+├── scripts/
+│   ├── set-webhook.ts           # npm run webhook:set <url>
+│   ├── delete-webhook.ts        # npm run webhook:delete
+│   ├── set-commands.ts          # npm run commands:set
+│   └── smoke-test.ts            # npm run smoke (router unit test)
+├── package.json tsconfig.json vercel.json
+├── .env.example .vercelignore .gitignore
 └── README.md (this file)
 ```
+
+---
+
+## Polling → Webhook Migrasyonu Notları
+
+Bu sürüm v0.2.0 — önceki Railway/Docker polling sürümü v0.1.0. Değişimler:
+- `node-telegram-bot-api` polling → webhook (sadece sender olarak)
+- `bot.on('message')` / `bot.onText` listener'lar → manuel `routeUpdate` dispatcher
+- In-memory rate limit / dup detect / buy alert state → Upstash Redis
+- Express `startServer` → Vercel functions
+- `setInterval` buy alert → Vercel Cron
+- Eski `Dockerfile`, `Procfile`, `railway.json`, `src/` → silindi (git history'de var)
+
+Geri dönmek istersen `git log --all -- telegram/src` → eski polling kodu commit `c15a403`'te.
 
 ---
 

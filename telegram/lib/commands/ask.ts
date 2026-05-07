@@ -24,8 +24,7 @@ export async function handleAsk(bot: TelegramBot, msg: TelegramBot.Message, prom
     return;
   }
 
-  // rate limit
-  const rl = checkAndConsume(userId, config.askRateLimitPerHour);
+  const rl = await checkAndConsume(userId, config.askRateLimitPerHour);
   if (!rl.allowed) {
     const mins = Math.ceil(rl.resetInSec / 60);
     const text =
@@ -39,7 +38,6 @@ export async function handleAsk(bot: TelegramBot, msg: TelegramBot.Message, prom
   const cleaned = truncate(prompt.trim(), MAX_PROMPT_LEN);
   const replyLang: Lang = chatLang === 'tr' ? 'tr' : detectLang(cleaned);
 
-  // typing indicator
   await bot.sendChatAction(chatId, 'typing').catch(() => undefined);
 
   try {
@@ -52,9 +50,7 @@ export async function handleAsk(bot: TelegramBot, msg: TelegramBot.Message, prom
     log.error('handleAsk failed', { e: String(e) });
     await bot.sendMessage(
       chatId,
-      replyLang === 'tr'
-        ? '> error: cevap alınamadı.'
-        : '> error: could not generate.',
+      replyLang === 'tr' ? '> error: cevap alınamadı.' : '> error: could not generate.',
     );
   }
 }

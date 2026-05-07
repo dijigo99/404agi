@@ -1,6 +1,6 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { config, TOKEN_NAME, TOKEN_TICKER } from '../config';
-import { dexscreenerUrl, getPriceSnapshot, jupiterSwapUrl } from '../services/dexscreener';
+import { getPriceSnapshot, jupiterSwapUrl } from '../services/dexscreener';
 import { formatPct, formatUsd } from '../utils/format';
 import { isTrChat, type Lang } from '../utils/lang';
 import { log } from '../utils/logger';
@@ -62,9 +62,7 @@ export async function handlePrice(bot: TelegramBot, msg: TelegramBot.Message) {
     log.error('handlePrice failed', { e: String(e) });
     await bot.sendMessage(
       chatId,
-      lang === 'tr'
-        ? '> error: fiyat alınamadı.'
-        : '> error: could not fetch price.',
+      lang === 'tr' ? '> error: fiyat alınamadı.' : '> error: could not fetch price.',
     );
   }
 }
