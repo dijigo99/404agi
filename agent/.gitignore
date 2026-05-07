@@ -5,4 +5,5 @@ dist
 .memory
 .logs
 *.log
+samples/live_run.md
 .DS_Store

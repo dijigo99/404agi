@@ -1,6 +1,6 @@
 # PROGRESS — Canlı Durum
 
-**Son güncelleme**: 2026-05-07 (ana beyin tarafından)
+**Son güncelleme**: 2026-05-07 22:55 (agent session — sistem promptu + tweet gen + response engine canlı)
 
 ---
 
@@ -13,7 +13,7 @@
 | Web App | flamboyant-boyd-c5acf4 | 🟢 Aktif | başlatıldı |
 | Telegram Bot | flamboyant-boyd-c5acf4 | ✅ Bitti | telegram session |
 | AI Agent | flamboyant-boyd-c5acf4 | ✅ Bitti (kod commit'li) | agent session |
-| Marketing | flamboyant-boyd-c5acf4 | 🟡 Devam (6/8 dosya) | marketing session |
+| Marketing | flamboyant-boyd-c5acf4 | ✅ Bitti | marketing session |
 
 ---
 
@@ -46,6 +46,39 @@
 - [x] X bio + 3 pinned tweet varyantı + 5 tweet planı → `branding/X_CONTENT.md`
 - [x] TG içerikleri (ana/TR/kanal desc + welcome msg + kurallar) → `branding/TELEGRAM_CONTENT.md`
 - [x] Meme prompt kütüphanesi (15 prompt + tweet metni) → `branding/MEME_PROMPTS.md`
+
+### Marketing ✅ (2026-05-07 22:46)
+- [x] KOL listesi (10 EN + 10 TR mikro arketip + filtre kriterleri + DM sıra stratejisi) → `marketing/kol_list.md`
+- [x] DM template'leri (EN soft + EN paid + TR soft + TR paid + post-launch momentum + yanıt cevapları) → `marketing/dm_templates.md`
+- [x] Build-in-public thread (5 tweet EN + Versiyon A/B sonuca göre + devam template) → `marketing/build_in_public_thread.md`
+- [x] Raid metinleri (TG kısa/uzun EN+TR + Reddit yorum + 4chan OP 3 varyant) → `marketing/raid_messages.md`
+- [x] Launch günü tweet planı (T-6h ila T+24h, 22 tweet, zamanlı + meme refs + stats placeholder) → `marketing/launch_day_tweets.md`
+- [x] Reddit/platform postları (r/CryptoMoonShots + r/SatoshiStreetBets + 4chan + DexTools/Screener desc + CoinGecko/CMC + Show HN) → `marketing/reddit_posts.md`
+- [x] FAQ (10 EN + 3 TR kritik soru, karakter tonunda) → `marketing/faq.md`
+- [x] Reactive replies (rug/team/$404/AI/buy/FUD/skeptik/bug/rakam/exchange + 10 silahlı meme one-liner, EN+TR) → `marketing/reactive_replies.md`
+- [x] **Strateji**: ORGANİC ONLY — paid KOL yok, build-in-public, $200 bütçe disiplini, transparency-first
+- [ ] **Manuel adım** (kullanıcı): KOL keyword araması yap, gerçek 20 handle topla → `kol_list.md`'deki arketipleri değiştir
+- [ ] **Manuel adım** (kullanıcı): T-6h'de DM kampanyası başlat
+- [ ] **Launch öncesi**: tüm `[CA]` placeholder'lar gerçek contract adresi ile değiştir
+- [ ] **Launch günü**: `launch_day_tweets.md` saatlerine göre tweet zamanlama
+
+### AI Agent ✅ (2026-05-07 22:55)
+- [x] Node.js + TypeScript skeleton (`/agent`)
+- [x] Stack: `@google/generative-ai` + `fastify` + `dotenv` + `tsx`
+- [x] **Sistem promptu** (`agent/src/prompts/system.ts`) — Failed AGI karakteri, lore canon, hard rules (politik/dini/identity/financial promise/self-harm yasak), tonal guide, TR/EN dil kuralı, output constraints
+- [x] **Tweet generator** (`agent/src/generators/tweet.ts`) — kategoriler: meme(35%) / trade(25%) / lore(15%) / holder(15%) / observation(10%); `gemini-2.0-flash`; **log-only**, asla post etmiyor (`.logs/tweets.jsonl`)
+- [x] **Response engine** (`agent/src/engines/response.ts`) — TR/EN auto-detect (`lib/lang.ts`), memory inject (last 8), safeguards, in-character fallback; `gemini-2.5-flash`
+- [x] **HTTP server** (`agent/src/server.ts`) — Fastify, endpoints: `POST /respond`, `POST /tweet/preview`, `POST /wallet/event`, `GET /health`. `X-Agent-Token` shared-secret auth (prod), open in dev
+- [x] **Wallet activity hook** (`agent/src/hooks/wallet.ts`) — `self_buy` / `tip_received` / `milestone` / `balance_low` event'leri → in-character tweet
+- [x] **Memory** (`agent/src/lib/memory.ts`) — JSON-backed last-50 interactions + milestones, swap-ready (KV/Redis için tek dosya)
+- [x] **Safeguards** (`agent/src/lib/safeguards.ts`) — banned topics regex (politika/din/identity/slur/self-harm/financial promise/financial advice), output sanitizer (hashtag/markdown/emoji/280-char strip), rate limit (4 tweet + 10 response/saat), kill switch (`AGENT_KILL_SWITCH=1`)
+- [x] **CLI scripts**: `npm run tweet:gen`, `npm run wallet:tweet`, `npm run test:prompts`
+- [x] **Sample outputs** — el-yazımı kanonik kalibrasyon (`agent/samples/test_outputs.md`, 15+ örnek: 8 tweet + 5 response + 2 wallet event); script `samples/live_run.md`'ye yazıyor (gitignored)
+- [x] `npm run typecheck` PASS, safeguards smoke test PASS
+- [x] Comprehensive `agent/README.md` (kurulum, env vars, HTTP API, safety model, deploy)
+- [ ] **Manuel adım** (kullanıcı): `GEMINI_API_KEY` `.env`'e koy → `npm run test:prompts` ile live çıktıları gör
+- [ ] **Web app session'a ver**: response endpoint URL → `/api/chat` proxy ile çağıracak
+- [ ] **Launch sonrası**: tweet log → manuel queue veya X API publisher (bu service kapsamı dışı)
 
 ### Telegram Bot ✅ (2026-05-07 22:36)
 - [x] Node.js + TypeScript skeleton (`/telegram`)

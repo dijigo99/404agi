@@ -23,7 +23,10 @@ import type { TweetCategory } from "../src/prompts/tweet.js";
 
 type Section = { heading: string; body: string };
 
-const OUTFILE = path.resolve(process.cwd(), "samples/test_outputs.md");
+// Hand-authored calibration lives in samples/test_outputs.md and is the
+// canonical reference. This script writes a separate file each run so we
+// never clobber the calibration.
+const OUTFILE = path.resolve(process.cwd(), "samples/live_run.md");
 
 const CATEGORIES: { cat: TweetCategory; lang?: "tr" | "en" }[] = [
   { cat: "lore" },

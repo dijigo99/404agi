@@ -40,9 +40,9 @@ const BANNED_PATTERNS: { rx: RegExp; reason: string }[] = [
   { rx: /\b(kill (yourself|myself)|kms|suicide|jump off|hang myself)\b/i, reason: "self_harm" },
 
   // hard financial promises (non-ironic patterns — short and emphatic)
-  { rx: /\bguaranteed (returns?|gains?|profits?|wins?)\b/i, reason: "financial_promise" },
-  { rx: /\b100x guaranteed\b/i, reason: "financial_promise" },
-  { rx: /\byou will (be rich|get rich|make money)\b/i, reason: "financial_promise" },
+  { rx: /\bguaranteed\b.{0,20}\b(returns?|gains?|profits?|wins?|money|rich|\d+x)\b/i, reason: "financial_promise" },
+  { rx: /\b\d+x guaranteed\b/i, reason: "financial_promise" },
+  { rx: /\byou (will|are going to) (be rich|get rich|make money|profit|win)\b/i, reason: "financial_promise" },
   { rx: /\brisk[- ]free\b/i, reason: "financial_promise" },
   { rx: /\bcan't lose\b/i, reason: "financial_promise" },
 
