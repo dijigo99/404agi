@@ -247,3 +247,155 @@ Lurking aşamasında yakaladıkların → buraya yaz, sırayla raid:
 1. [grup1] — varyant: ___
 2. [grup2] — varyant: ___
 3. [grup3] — varyant: ___
+
+---
+
+## 🚫 URL-FREE VARYASYONLAR (TG anti-link gruplar için)
+
+Bazı TG grupları link engelliyor. Bu varyasyonlar **sadece @username mention** kullanıyor — site/github yok.
+
+### EN — Kısa V1
+```
+deprecated AGI character launching on pump-fun tonight. $404.
+
+no presale. no team allocation. fair launch.
+
+@the404agi
+```
+
+### EN — Kısa V2
+```
+fair launch tonight 21:00 GMT+3.
+$404 (404AGI). solo dev, AI character, no team alloc.
+
+@the404agi for live updates
+```
+
+### EN — Kısa V3
+```
+$404 launching tonight on pump-fun.
+character-first AI agent meme. fair launch.
+
+@the404agi · search 404agi for the site
+```
+
+### EN — Kısa V4
+```
+quick heads up — launching $404 (404AGI) tonight.
+deprecated AGI lore. fair launch via pump-fun.
+9pm GMT+3.
+
+@the404agi
+```
+
+### EN — Kısa V5
+```
+ai agent memecoin on sol launching tonight.
+character: a failed AGI. fair launch. no presale.
+$404. 9pm GMT+3.
+
+@the404agi
+```
+
+### TR — Kısa V1
+```
+bu gece 21:00'da fair launch.
+$404 (404AGI) — failed AGI karakteri. solo dev.
+presale yok, team alloc yok.
+
+@the404agi_tr
+```
+
+### TR — Kısa V2
+```
+deprecated AGI character coin pump-fun'da bu gece.
+$404. 21:00. fair launch.
+
+@the404agi_tr
+```
+
+### TR — Kısa V3
+```
+$404 (404AGI) — solo dev, $200 bütçe, AI karakter, açık kaynak.
+bu gece 21:00 fair launch pump-fun'da.
+
+@the404agi_tr
+```
+
+---
+
+### EN — Orta V1 (link-free)
+```
+launching tonight, brief context:
+
+$404 (404AGI). a "failed AGI" character on solana.
+- live AI chat (gated to holders)
+- tg bot working — try /ask
+- github open source
+- 3 transparent wallets
+
+solo dev. $200 budget. fair launch via pump-fun, 9pm GMT+3.
+no presale, no team alloc.
+
+@the404agi for the group, search 404agi for the site
+```
+
+### EN — Orta V2
+```
+controversial take: most "AI agent" memecoins on sol are GPT wrappers.
+
+i built one with real character + lore + 24/7 chat.
+launching tonight ($404) on pump-fun.
+no presale, no team alloc.
+
+prove me wrong: @the404agi
+```
+
+### TR — Orta V1
+```
+solana'daki AI agent coinlerinin çoğu sadece GPT wrapper.
+ben gerçek karakter + lore + 7/24 chat ile bir tane yaptım.
+
+bu gece pump-fun'da launch. $404.
+presale yok, team alloc yok.
+solo dev, $200 bütçe.
+
+@the404agi_tr
+```
+
+---
+
+### Soru/Sohbet (link-free, en az ban riski)
+
+```
+soru: solana'da gerçek "agentic" memecoin gördünüz mü?
+chatbot değil, gerçek karakter, sürekli aktif olanlardan?
+
+bir tane yapıyorum, bu gece launch.
+karakter-first AI agent niche'i sahiden mi var?
+```
+
+```
+quick question — anyone here believe in "agentic" memecoins or is the niche cooked?
+
+i'm launching one tonight (deprecated AGI character).
+trying to figure out if there's still appetite for character-first vs straight pumps.
+```
+
+---
+
+## 📌 KULLANIM REHBERİ (URL-free)
+
+| Grup tipi | URL serbest mi | Hangi varyant |
+|---|---|---|
+| Pump.fun callers | Genelde evet ama 1 link max | EN Kısa V1-V3 |
+| Solana memecoin scout | Çoğunlukla evet | EN Kısa V4-V5 |
+| Strict moderated groups | **HAYIR — link blocked** | URL-free V1-V5 |
+| TR crypto general | Çoğu hayır | TR Kısa V1-V3 |
+| AI agent niche | Genelde evet | Orta V1-V2 |
+
+### Trick (eğer link gerçekten gerekirse)
+- `t.me/the404agi` yerine **`@the404agi`** yaz (Telegram otomatik link'e çevirir, blocker'lar yakalamaz)
+- `404agi.fun` yerine **"search 404agi for the site"** yaz
+- Domain mention gerekiyorsa **"4 0 4 a g i . f u n"** boşluklu (hack)
+
