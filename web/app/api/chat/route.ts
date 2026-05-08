@@ -91,12 +91,12 @@ export async function POST(req: NextRequest) {
 
   const genai = new GoogleGenerativeAI(apiKey);
   const model = genai.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
     systemInstruction: SYSTEM_PROMPT,
     generationConfig: {
       temperature: 0.9,
       topP: 0.95,
-      maxOutputTokens: 220,
+      maxOutputTokens: 1024,
     },
   });
 
