@@ -1,0 +1,21 @@
+
+# ==================================================
+# 404AGI — Operational privacy (added 2026-05-08 16:20)
+# These are kept locally but not pushed — protect
+# marketing strategy and ops from copycats/scammers.
+# ==================================================
+marketing/
+LAUNCH_TIMELINE.md
+PRE_LAUNCH_CHECKLIST.md
+MASTER_PLAN.md
+PROGRESS.md
+AGENT_BRIEF.md
+BRANDING_BRIEF.md
+MARKETING_BRIEF.md
+TELEGRAM_BRIEF.md
+WEB_APP_BRIEF.md
+SESSION_BRIEF_TEMPLATE.md
+WEBSITE_SPEC.md
+branding/MEME_PROMPTS.md
+branding/X_CONTENT.md
+branding/TELEGRAM_CONTENT.md
