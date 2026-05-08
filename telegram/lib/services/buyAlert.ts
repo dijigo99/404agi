@@ -146,11 +146,10 @@ function formatBuyAlert(p: {
 }
 
 // Tier-based buy video selector
-// Returns GitHub raw URL of video to attach to alert, or null for text-only
+// EVERY buy alert ($5+) gets a video. Bigger buys = bigger video.
 function pickBuyVideo(approxUsd: number): string | null {
   const base = 'https://raw.githubusercontent.com/dijigo99/404agi/main/branding/assets';
   if (approxUsd >= 2000) return `${base}/video-launch.mp4`; // 🐋 whale
   if (approxUsd >= 500) return `${base}/video-post.mp4`;     // chunky buy
-  if (approxUsd >= 200) return `${base}/video-buy.mp4`;      // medium buy
-  return null;                                                // small buy: text only
+  return `${base}/video-buy.mp4`;                            // every buy gets video-buy
 }
