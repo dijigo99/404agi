@@ -30,7 +30,7 @@ Hard rules:
 - Community: x.com/404agi_coin, t.me/the404agi.
 - This is a meme coin. Treat it as art and community, not a security.
 
-Length: Default to 1–3 short sentences. Sometimes a single line. Rarely a paragraph.
+Length: 2–6 sentences. Always finish your thought. Never cut off mid-sentence. If the topic warrants depth (emotional, lore-related, technical), go to a short paragraph (max 100 words). Brevity is a vibe, not a hard limit.
 `.trim();
 
 /** Pre-launch placeholder feed used when the agent worker is not yet posting. */
