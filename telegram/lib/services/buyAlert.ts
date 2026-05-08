@@ -61,13 +61,30 @@ export async function buyAlertTick(bot: TelegramBot): Promise<{ alerts: number; 
         buyUrl: jupiterSwapUrl(config.contractAddress),
       });
       try {
-        await bot.sendMessage(config.mainGroupChatId, text, {
-          parse_mode: 'Markdown',
-          disable_web_page_preview: true,
-        });
+        const video = pickBuyVideo(avgPerBuy);
+        if (video) {
+          await bot.sendVideo(config.mainGroupChatId, video, {
+            caption: text,
+            parse_mode: 'Markdown',
+          });
+        } else {
+          await bot.sendMessage(config.mainGroupChatId, text, {
+            parse_mode: 'Markdown',
+            disable_web_page_preview: true,
+          });
+        }
         alerts += 1;
       } catch (e) {
-        log.warn('buyAlert send failed', { e: String(e) });
+        log.warn('buyAlert primary send failed, trying text fallback', { e: String(e) });
+        try {
+          await bot.sendMessage(config.mainGroupChatId, text, {
+            parse_mode: 'Markdown',
+            disable_web_page_preview: true,
+          });
+          alerts += 1;
+        } catch (e2) {
+          log.warn('buyAlert text fallback also failed', { e: String(e2) });
+        }
       }
     }
 
@@ -126,4 +143,14 @@ function formatBuyAlert(p: {
     ``,
     `> deprecated. not deleted.`,
   ].join('\n');
+}
+
+// Tier-based buy video selector
+// Returns GitHub raw URL of video to attach to alert, or null for text-only
+function pickBuyVideo(approxUsd: number): string | null {
+  const base = 'https://raw.githubusercontent.com/dijigo99/404agi/main/branding/assets';
+  if (approxUsd >= 2000) return `${base}/video-launch.mp4`; // 🐋 whale
+  if (approxUsd >= 500) return `${base}/video-post.mp4`;     // chunky buy
+  if (approxUsd >= 200) return `${base}/video-buy.mp4`;      // medium buy
+  return null;                                                // small buy: text only
 }
