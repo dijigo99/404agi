@@ -9,7 +9,14 @@
       "Bash(npm i *)",
       "Bash(npm uninstall *)",
       "Bash(rm -rf \"/c/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4/web/app/fonts\")",
-      "Bash(rm -f \"/c/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4/web/public/next.svg\" \"/c/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4/web/public/vercel.svg\")"
+      "Bash(rm -f \"/c/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4/web/public/next.svg\" \"/c/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4/web/public/vercel.svg\")",
+      "Bash(git -C . log --oneline -10)",
+      "Bash(TELEGRAM_BOT_TOKEN=test BOT_USERNAME=the404agi_bot ANNOUNCE_API_KEY=k npx tsx scripts/smoke-test.ts)",
+      "Bash(git -C C:/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4 status)",
+      "Bash(git -C C:/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4 add -A telegram PROGRESS.md)",
+      "Bash(git -C C:/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4 status --short)",
+      "Bash(git -C C:/Users/EMRE/Desktop/coin/.claude/worktrees/flamboyant-boyd-c5acf4 commit -m ' *)",
+      "Bash(git *)"
     ]
   }
 }

@@ -46,7 +46,7 @@ function getModel() {
     systemInstruction: SYSTEM_PROMPT_BASE,
     generationConfig: {
       temperature: 0.9,
-      maxOutputTokens: 280,
+      maxOutputTokens: 1024,
       topP: 0.95,
     },
   });
